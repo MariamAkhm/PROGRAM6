@@ -116,19 +116,87 @@ namespace PROGRAM6
             }
             static void Main(string[] args)
             {
+            Console.WriteLine("Задание 1");
+            BankAccount bankAccount1 = new BankAccount();
+            Console.WriteLine("Введите номер аккаунта");
+            long number;
+            while (!long.TryParse(Console.ReadLine(), out number))
+            {
+                Console.WriteLine("Неверный ввод, попробуйте еще раз");
+            }
+            Console.WriteLine("Введите тип аккаунта");
+            string type = Console.ReadLine();
+            Console.WriteLine("Введите баланс банковского счета");
+            decimal balance;
+            while (!decimal.TryParse(Console.ReadLine(), out balance))
+            {
+                Console.WriteLine("Неверный ввод, попробуйте еще раз");
+            }
+            bankAccount1.Number = number;
+            bankAccount1.Type = type;
+            bankAccount1.Balance = balance;
+            bankAccount1.PrintValues();
+            BankAccount bankAccount2 = new BankAccount();
+            Console.WriteLine("Введите номер аккаунта");
+            while (!long.TryParse(Console.ReadLine(), out number))
+            {
+                Console.WriteLine("Неверный ввод, попробуйте еще раз");
+            }
+            Console.WriteLine("Введите тип аккаунта");
+            type = Console.ReadLine();
+            Console.WriteLine("Введите баланс банковского счета");
+            while (!decimal.TryParse(Console.ReadLine(), out balance))
+            {
+                Console.WriteLine("Неверный ввод, попробуйте еще раз");
+            }
+            bankAccount2.Number = number;
+            bankAccount2.Type = type;
+            bankAccount2.Balance = balance;
+            bankAccount2.PrintValues();
+            Console.WriteLine("Введите сумму, которую нужно перевести с первого счета на второй");
+            int sum1;
+            while (!int.TryParse(Console.ReadLine(), out sum1))
+            {
+                Console.WriteLine("Неверный ввод, попробуйте еще раз");
+            }
+             if (sum1 < bankAccount1.Balance)
+            {
+                bankAccount1.MoneyTransfer(bankAccount2, sum1);
+                Console.WriteLine($"Баланс на первом аккаунте: {bankAccount1.Balance}");
+                Console.WriteLine($"Баланс на втором аккаунте: {bankAccount2.Balance}");
+            }
+            else
+            {
+                Console.WriteLine("Недостаточно средств на балансе");
+            }
+            Console.WriteLine("Введите сумму, которую нужно перевести со второго счета на первый");
+            int sum2;
+            while (!int.TryParse(Console.ReadLine(), out sum2))
+            {
+                Console.WriteLine("Неверный ввод, попробуйте еще раз");
+            }
+             if (sum2 < bankAccount2.Balance)
+            {
+                bankAccount2.MoneyTransfer(bankAccount1, sum2);
+                Console.WriteLine($"Баланс на втором аккаунте: {bankAccount2.Balance}");
+                Console.WriteLine($"Баланс на первом аккаунте: {bankAccount1.Balance}");
+            }
+            else
+            {
+                Console.WriteLine("Недостаточно средств на балансе ");
+            }
 
-
-            /*   Console.WriteLine("Задание 2");
+            Console.WriteLine("Задание 2");
                string input = Console.ReadLine();
                Console.WriteLine(Reverse(input));
-               /*Student student = new Student();
+               Student student = new Student();
                if (student is Person)
                {
                   object c = student as Person;
                }
-               object a =student as Person;*/
+               object a =student as Person;
 
-           /* Console.WriteLine("Задание 3");
+            Console.WriteLine("Задание 3");
             Console.WriteLine("Введите имя файла");
             string path = Console.ReadLine();
             if (File.Exists(path))
@@ -140,7 +208,6 @@ namespace PROGRAM6
             {
                 Console.WriteLine("Файл не найден");
             }
-           */
                 int count = 0;
                 using (StreamReader reader = new StreamReader("emails.txt"))
                 {
@@ -162,25 +229,17 @@ namespace PROGRAM6
                 GetMail(ref str);
 
                 
-             /*   Console.WriteLine("Песни");
+                Console.WriteLine("Песни");
                 List<Song> songs = new List<Song>();
-                songs.Add(new Song("Кадиллак", "Моргенштерн"));
-                songs.Add(new Song("Кадиллак", "Моргенштерн"));
+                songs.Add(new Song("Antarstica", "$uicideboy$"));
+                songs.Add(new Song("lately", "guccihighwater"));
                 songs.Add(new Song("Old Town Road", "Lil Nas X"));
-                songs.Add(new Song("Кадиллак", "Моргенштерн"));
+                songs.Add(new Song("The Real Slim Shady", "Eminem"));
 
                 foreach (var song in songs)
                 {
                     Console.WriteLine(Song.Title(song));
                 }
-             */
-                
-               
-                
-
-
-
-
             }
         }
 }
